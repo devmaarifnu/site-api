@@ -22,6 +22,10 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 	categoryRepo := repositories.NewCategoryRepository(database.GetDB())
 	// tagRepo := repositories.NewTagRepository(database.GetDB()) // Not used yet
 	settingRepo := repositories.NewSettingRepository(database.GetDB())
+	pengurusRepo := repositories.NewPengurusRepository(database.GetDB())
+	editorialRepo := repositories.NewEditorialRepository(database.GetDB())
+	contactRepo := repositories.NewContactRepository(database.GetDB())
+	eventRepo := repositories.NewEventRepository(database.GetDB())
 
 	// Initialize services
 	newsService := services.NewNewsService(newsRepo)
@@ -32,6 +36,10 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 	pageService := services.NewPageService(pageRepo)
 	categoryService := services.NewCategoryService(categoryRepo)
 	settingService := services.NewSettingService(settingRepo)
+	pengurusService := services.NewPengurusService(pengurusRepo)
+	editorialService := services.NewEditorialService(editorialRepo)
+	contactService := services.NewContactService(contactRepo)
+	eventService := services.NewEventService(eventRepo)
 
 	// Initialize handlers
 	newsHandler := handlers.NewNewsHandler(newsService)
@@ -42,6 +50,10 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 	pageHandler := handlers.NewPageHandler(pageService)
 	categoryHandler := handlers.NewCategoryHandler(categoryService, newsService)
 	settingHandler := handlers.NewSettingHandler(settingService)
+	pengurusHandler := handlers.NewPengurusHandler(pengurusService)
+	editorialHandler := handlers.NewEditorialHandler(editorialService)
+	contactHandler := handlers.NewContactHandler(contactService)
+	eventHandler := handlers.NewEventHandler(eventService)
 
 	// Apply global middleware
 	router.Use(middleware.Logger())
@@ -81,6 +93,7 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 		{
 			organization.GET("/structure", orgHandler.GetOrganizationStructure)
 			organization.GET("/board-members", orgHandler.GetBoardMembers)
+			organization.GET("/pengurus", pengurusHandler.GetAllPengurus)
 		}
 
 		// Page routes
@@ -95,6 +108,24 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 
 		// Settings route
 		v1.GET("/settings", settingHandler.GetPublicSettings)
+
+		// Editorial routes
+		editorial := v1.Group("/editorial")
+		{
+			editorial.GET("/team", editorialHandler.GetEditorialTeam)
+		}
+
+		// Contact routes
+		contact := v1.Group("/contact")
+		{
+			contact.POST("/submit", contactHandler.SubmitContact)
+		}
+
+		// Events routes
+		events := v1.Group("/events")
+		{
+			events.GET("/flayers", eventHandler.GetAllEvents)
+		}
 	}
 
 	// Health check endpoint

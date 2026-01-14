@@ -517,6 +517,76 @@ INSERT INTO download_logs (document_id, ip_address, user_agent, downloaded_at) V
 (2, '192.168.1.106', 'Mozilla/5.0', NOW() - INTERVAL 1 DAY),
 (5, '192.168.1.107', 'Mozilla/5.0', NOW() - INTERVAL 3 DAY);
 
+-- ============================================
+-- 15. PENGURUS ORGANISASI
+-- ============================================
+
+INSERT INTO pengurus (nama, jabatan, kategori, foto, bio, email, phone, periode_mulai, periode_selesai, order_number, is_active) VALUES
+('Prof. Dr. KH. Said Aqil Siradj, MA', 'Ketua Umum', 'pimpinan_utama', 'https://ui-avatars.com/api/?name=Said+Aqil+Siradj&background=059669&color=fff&size=400', 'Ulama dan intelektual muslim Indonesia, Ketua Umum PBNU', 'ketua@lpmaarifnu.or.id', '021-3920677', 2024, 2029, 1, TRUE),
+('Dr. H. Ahmad Lutfi, M.Pd', 'Wakil Ketua I', 'pimpinan_utama', 'https://ui-avatars.com/api/?name=Ahmad+Lutfi&background=2563EB&color=fff&size=400', 'Pakar pendidikan Islam dengan pengalaman lebih dari 20 tahun', 'wakil1@lpmaarifnu.or.id', '021-3920678', 2024, 2029, 2, TRUE),
+('Drs. H. Mahfudz Siddiq, M.Si', 'Wakil Ketua II', 'pimpinan_utama', 'https://ui-avatars.com/api/?name=Mahfudz+Siddiq&background=7C3AED&color=fff&size=400', 'Praktisi pendidikan dan manajemen organisasi', 'wakil2@lpmaarifnu.or.id', '021-3920679', 2024, 2029, 3, TRUE),
+('Dr. Hj. Siti Aisyah, M.Pd', 'Sekretaris Umum', 'sekretariat', 'https://ui-avatars.com/api/?name=Siti+Aisyah&background=DB2777&color=fff&size=400', 'Ahli administrasi dan manajemen pendidikan', 'sekretaris@lpmaarifnu.or.id', '021-3920680', 2024, 2029, 4, TRUE),
+('H. Abdul Rahman, SE, M.Ak', 'Bendahara Umum', 'bendahara', 'https://ui-avatars.com/api/?name=Abdul+Rahman&background=EA580C&color=fff&size=400', 'Akuntan profesional dan auditor', 'bendahara@lpmaarifnu.or.id', '021-3920681', 2024, 2029, 5, TRUE),
+('Dr. Muhammad Yusuf, M.Pd', 'Kepala Bidang Pendidikan Dasar', 'bidang', 'https://ui-avatars.com/api/?name=Muhammad+Yusuf&background=16A34A&color=fff&size=400', 'Spesialis pendidikan dasar dan kurikulum', 'pendas@lpmaarifnu.or.id', NULL, 2024, 2029, 6, TRUE),
+('Dra. Hj. Nur Aini, M.Pd', 'Kepala Bidang Pendidikan Menengah', 'bidang', 'https://ui-avatars.com/api/?name=Nur+Aini&background=8B5CF6&color=fff&size=400', 'Pakar pendidikan menengah dan psikologi remaja', 'penmen@lpmaarifnu.or.id', NULL, 2024, 2029, 7, TRUE),
+('Prof. Dr. Ahmad Syahid, M.A', 'Kepala Bidang Pendidikan Tinggi', 'bidang', 'https://ui-avatars.com/api/?name=Ahmad+Syahid&background=0891B2&color=fff&size=400', 'Profesor pendidikan tinggi dan peneliti', 'pendikti@lpmaarifnu.or.id', NULL, 2024, 2029, 8, TRUE),
+('Dr. Hj. Fatimah Azzahra, M.Pd', 'Kepala Bidang Kurikulum', 'bidang', 'https://ui-avatars.com/api/?name=Fatimah+Azzahra&background=DC2626&color=fff&size=400', 'Ahli pengembangan kurikulum dan asesmen', 'kurikulum@lpmaarifnu.or.id', NULL, 2024, 2029, 9, TRUE),
+('H. Zainuddin Maliki, M.M', 'Kepala Bidang SDM dan Kemitraan', 'bidang', 'https://ui-avatars.com/api/?name=Zainuddin+Maliki&background=F59E0B&color=fff&size=400', 'Praktisi manajemen SDM dan kerjasama kelembagaan', 'sdm@lpmaarifnu.or.id', NULL, 2024, 2029, 10, TRUE),
+('Dr. Ir. Habiburrahman, M.T', 'Kepala Bidang Litbang', 'bidang', 'https://ui-avatars.com/api/?name=Habiburrahman&background=6366F1&color=fff&size=400', 'Peneliti dan pengembang teknologi pendidikan', 'litbang@lpmaarifnu.or.id', NULL, 2024, 2029, 11, TRUE),
+('Drs. H. Miftahul Huda, M.Pd.I', 'Kepala Bidang Humas & Publikasi', 'bidang', 'https://ui-avatars.com/api/?name=Miftahul+Huda&background=10B981&color=fff&size=400', 'Ahli komunikasi dan public relations', 'humas@lpmaarifnu.or.id', NULL, 2024, 2029, 12, TRUE);
+
+-- ============================================
+-- 16. EDITORIAL TEAM & COUNCIL
+-- ============================================
+
+-- Pemimpin Redaksi
+INSERT INTO editorial_team (name, position, role_type, photo, bio, email, phone, order_number, is_active) VALUES
+('Dr. H. Muhammad Fadhil, M.Pd', 'Pemimpin Redaksi', 'pemimpin_redaksi', 'https://ui-avatars.com/api/?name=Muhammad+Fadhil&background=059669&color=fff&size=400', 'Pakar pendidikan Islam dengan pengalaman lebih dari 15 tahun di bidang jurnalistik pendidikan.', 'fadhil@lpmaarifnu.or.id', '021-12345678', 1, TRUE);
+
+-- Wakil Pemimpin Redaksi
+INSERT INTO editorial_team (name, position, role_type, photo, bio, email, phone, order_number, is_active) VALUES
+('Dra. Hj. Nur Azizah, M.Si', 'Wakil Pemimpin Redaksi I', 'wakil_pemimpin_redaksi', 'https://ui-avatars.com/api/?name=Nur+Azizah&background=7C3AED&color=fff&size=400', 'Spesialis media dan komunikasi publik.', 'azizah@lpmaarifnu.or.id', NULL, 2, TRUE),
+('H. Abdul Malik, S.Pd.I, M.M', 'Wakil Pemimpin Redaksi II', 'wakil_pemimpin_redaksi', 'https://ui-avatars.com/api/?name=Abdul+Malik&background=DC2626&color=fff&size=400', 'Praktisi media dengan fokus pada jurnalisme pendidikan.', 'malik@lpmaarifnu.or.id', NULL, 3, TRUE);
+
+-- Redaktur Pelaksana
+INSERT INTO editorial_team (name, position, role_type, photo, bio, email, phone, order_number, is_active) VALUES
+('Ahmad Syarif, S.Sos, M.I.Kom', 'Redaktur Pelaksana', 'redaktur_pelaksana', 'https://ui-avatars.com/api/?name=Ahmad+Syarif&background=2563EB&color=fff&size=400', 'Koordinator harian tim redaksi dengan pengalaman di berbagai media nasional.', 'syarif@lpmaarifnu.or.id', NULL, 4, TRUE);
+
+-- Tim Redaksi
+INSERT INTO editorial_team (name, position, role_type, photo, bio, email, order_number, is_active) VALUES
+('Rizki Aulia Rahman, S.Pd', 'Editor Berita', 'tim_redaksi', 'https://ui-avatars.com/api/?name=Rizki+Rahman&background=6366F1&color=fff&size=400', NULL, NULL, 5, TRUE),
+('Dewi Kusuma Wardani, S.Sos', 'Editor Opini', 'tim_redaksi', 'https://ui-avatars.com/api/?name=Dewi+Wardani&background=EC4899&color=fff&size=400', NULL, NULL, 6, TRUE),
+('Faisal Akbar, S.Kom', 'Web Administrator', 'tim_redaksi', 'https://ui-avatars.com/api/?name=Faisal+Akbar&background=8B5CF6&color=fff&size=400', NULL, NULL, 7, TRUE),
+('Rina Melati, S.Ds', 'Desainer Grafis', 'tim_redaksi', 'https://ui-avatars.com/api/?name=Rina+Melati&background=F59E0B&color=fff&size=400', NULL, NULL, 8, TRUE),
+('Hendra Gunawan, S.I.Kom', 'Reporter', 'tim_redaksi', 'https://ui-avatars.com/api/?name=Hendra+Gunawan&background=10B981&color=fff&size=400', NULL, NULL, 9, TRUE),
+('Laila Nur Hidayah, S.Pd', 'Content Writer', 'tim_redaksi', 'https://ui-avatars.com/api/?name=Laila+Hidayah&background=F43F5E&color=fff&size=400', NULL, NULL, 10, TRUE);
+
+-- Dewan Redaksi
+INSERT INTO editorial_council (name, institution, expertise, photo, bio, email, order_number, is_active) VALUES
+('Prof. Dr. KH. Abdullah Shiddiq, MA', 'UIN Syarif Hidayatullah Jakarta', 'Pendidikan Islam & Budaya', 'https://ui-avatars.com/api/?name=Abdullah+Shiddiq&background=0891B2&color=fff&size=400', NULL, NULL, 1, TRUE),
+('Dr. Hj. Fatimah Zahra, M.Pd', 'Universitas Nahdlatul Ulama', 'Kurikulum & Pembelajaran', 'https://ui-avatars.com/api/?name=Fatimah+Zahra&background=DB2777&color=fff&size=400', NULL, NULL, 2, TRUE),
+('Dr. Muhammad Ridwan, M.A', 'IAIN Surakarta', 'Media & Komunikasi Islam', 'https://ui-avatars.com/api/?name=Muhammad+Ridwan&background=EA580C&color=fff&size=400', NULL, NULL, 3, TRUE),
+('Dr. Hj. Siti Nurjanah, M.Si', 'UIN Maulana Malik Ibrahim Malang', 'Manajemen Pendidikan', 'https://ui-avatars.com/api/?name=Siti+Nurjanah&background=16A34A&color=fff&size=400', NULL, NULL, 4, TRUE);
+
+-- ============================================
+-- 17. CONTACT MESSAGES (Sample)
+-- ============================================
+
+INSERT INTO contact_messages (ticket_id, name, email, phone, subject, message, status, priority, ip_address, user_agent, created_at) VALUES
+('CTK-2024-0001', 'Budi Santoso', 'budi.santoso@email.com', '081234567890', 'Pertanyaan tentang Program Beasiswa', 'Saya ingin menanyakan persyaratan dan cara pendaftaran program beasiswa unggulan 2024. Mohon informasinya.', 'read', 'medium', '192.168.1.100', 'Mozilla/5.0', NOW() - INTERVAL 2 DAY),
+('CTK-2024-0002', 'Siti Rahmawati', 'siti.rahmawati@email.com', '082345678901', 'Informasi Pendaftaran Siswa Baru', 'Apakah ada informasi tentang pendaftaran siswa baru untuk tahun ajaran 2024/2025?', 'new', 'high', '192.168.1.101', 'Mozilla/5.0', NOW() - INTERVAL 1 DAY),
+('CTK-2024-0003', 'Ahmad Fauzi', 'ahmad.fauzi@email.com', '083456789012', 'Kerjasama Kelembagaan', 'Kami dari Yayasan XYZ ingin menjalin kerjasama dengan LP Ma''arif NU. Bagaimana prosedurnya?', 'in_progress', 'high', '192.168.1.102', 'Mozilla/5.0', NOW() - INTERVAL 3 DAY),
+('CTK-2024-0004', 'Dewi Lestari', 'dewi.lestari@email.com', NULL, 'Pertanyaan Umum', 'Dimana saya bisa mendapatkan informasi lengkap tentang program-program LP Ma''arif NU?', 'resolved', 'low', '192.168.1.103', 'Mozilla/5.0', NOW() - INTERVAL 5 DAY);
+
+-- ============================================
+-- 18. EVENT FLAYERS (Sample)
+-- ============================================
+
+INSERT INTO event_flayers (title, description, image, event_date, event_location, registration_url, contact_person, contact_phone, contact_email, order_number, is_active, start_display_date, end_display_date, created_by) VALUES
+('Seminar Nasional Pendidikan Islam 2024', 'Seminar nasional dengan tema "Transformasi Pendidikan Islam di Era Digital" yang menghadirkan narasumber terkemuka.', 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800', '2024-03-15', 'Hotel Borobudur Jakarta', 'https://forms.lpmaarifnu.or.id/seminar2024', 'Panitia Seminar', '021-3920677', 'seminar@lpmaarifnu.or.id', 1, TRUE, NOW() - INTERVAL 7 DAY, '2024-03-15', 1),
+('Workshop Kurikulum Merdeka', 'Workshop implementasi Kurikulum Merdeka untuk guru-guru Ma''arif se-Indonesia.', 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800', '2024-02-20', 'Gedung LP Ma''arif NU Jakarta', 'https://forms.lpmaarifnu.or.id/workshop-kurikulum', 'Tim Kurikulum', '021-3920678', 'kurikulum@lpmaarifnu.or.id', 2, TRUE, NOW() - INTERVAL 10 DAY, '2024-02-20', 1),
+('Jambore Pramuka Ma''arif Nasional', 'Jambore Pramuka tingkat nasional untuk siswa-siswa Ma''arif seluruh Indonesia.', 'https://images.unsplash.com/photo-1519995451813-39e29e054914?w=800', '2024-04-10', 'Cibubur, Jakarta Timur', 'https://forms.lpmaarifnu.or.id/jambore2024', 'Kwartir Pramuka Ma''arif', '021-8093789', 'pramuka@lpmaarifnu.or.id', 3, TRUE, NOW() - INTERVAL 5 DAY, '2024-04-10', 2);
+
 -- Re-enable foreign key checks
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -548,7 +618,17 @@ SELECT 'Pages', COUNT(*) FROM pages
 UNION ALL
 SELECT 'Settings', COUNT(*) FROM settings
 UNION ALL
-SELECT 'Media', COUNT(*) FROM media;
+SELECT 'Media', COUNT(*) FROM media
+UNION ALL
+SELECT 'Pengurus', COUNT(*) FROM pengurus
+UNION ALL
+SELECT 'Editorial Team', COUNT(*) FROM editorial_team
+UNION ALL
+SELECT 'Editorial Council', COUNT(*) FROM editorial_council
+UNION ALL
+SELECT 'Contact Messages', COUNT(*) FROM contact_messages
+UNION ALL
+SELECT 'Event Flayers', COUNT(*) FROM event_flayers;
 
 -- ============================================
 -- NOTES
@@ -567,6 +647,11 @@ Seeder ini berisi data dummy untuk testing dengan detail:
 8. Pages: 4 halaman statis (visi-misi, sejarah, program, pramuka)
 9. Settings: Website settings lengkap
 10. Media: 3 sample media files
+11. Pengurus: 12 pengurus organisasi periode 2024-2029
+12. Editorial Team: 10 anggota tim redaksi
+13. Editorial Council: 4 anggota dewan redaksi
+14. Contact Messages: 4 sample pesan kontak
+15. Event Flayers: 3 sample event/kegiatan
 
 Semua data menggunakan placeholder images dari Unsplash dan UI Avatars.
 Password untuk semua user: "password" (sudah di-hash)
@@ -575,6 +660,11 @@ Untuk testing API:
 - Categories sudah terisi dari schema (news: 4, document: 5)
 - Relasi many-to-many sudah dibuat (news_tags, opinion_tags)
 - Sample views dan downloads untuk testing analytics
+
+CATATAN PENTING:
+- Data Satuan Pendidikan (Provinsi, Kabupaten, Satpen) TIDAK ada di sini
+  Mereka memiliki database terpisah (lihat dokumentasi terpisah)
+- Home Features TIDAK diperlukan (data hardcoded di frontend)
 
 Total records: 100+ records across all tables
 */
