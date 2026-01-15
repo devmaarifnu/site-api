@@ -30,13 +30,16 @@ func (r *eventRepository) FindAll(filters map[string]interface{}) ([]models.Even
 		query = query.Where("is_active = ?", true)
 	}
 
-	// Filter by display date range
-	now := time.Now()
-	query = query.Where("(start_display_date IS NULL OR start_display_date <= ?)", now)
-	query = query.Where("(end_display_date IS NULL OR end_display_date >= ?)", now)
+	// Filter by display date range (only if check_display_period is true)
+	if checkDisplayPeriod, ok := filters["check_display_period"].(bool); ok && checkDisplayPeriod {
+		now := time.Now()
+		query = query.Where("(start_display_date IS NULL OR start_display_date <= ?)", now)
+		query = query.Where("(end_display_date IS NULL OR end_display_date >= ?)", now)
+	}
 
 	// Filter upcoming events only
 	if upcoming, ok := filters["upcoming"].(bool); ok && upcoming {
+		now := time.Now()
 		query = query.Where("event_date >= ?", now)
 	}
 

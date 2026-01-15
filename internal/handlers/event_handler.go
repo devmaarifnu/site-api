@@ -44,6 +44,11 @@ func (h *EventHandler) GetAllEvents(c *gin.Context) {
 		filters["upcoming"] = true
 	}
 
+	// Parse check_display_period filter (optional, default: false)
+	if checkDisplayPeriod := c.Query("check_display_period"); checkDisplayPeriod == "true" {
+		filters["check_display_period"] = true
+	}
+
 	events, err := h.eventService.GetAllEvents(filters)
 	if err != nil {
 		utils.ErrorResponse(c, http.StatusInternalServerError, "Failed to retrieve event flayers", err.Error())
