@@ -57,7 +57,7 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 
 	// Apply global middleware
 	router.Use(middleware.Logger())
-	router.Use(middleware.CORS(&cfg.CORS))
+	// router.Use(middleware.CORS(&cfg.CORS)) // Disabled: CORS handled by Nginx
 	router.Use(middleware.RateLimit(&cfg.RateLimit))
 
 	// API v1 routes
