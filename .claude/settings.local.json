@@ -7,7 +7,9 @@
       "Bash(go mod:*)",
       "Bash(tree:*)",
       "Bash(go build:*)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Bash(curl:*)",
+      "Bash(mysql:*)"
     ],
     "deny": [],
     "ask": []

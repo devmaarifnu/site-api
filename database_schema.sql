@@ -420,7 +420,129 @@ CREATE TABLE notifications (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================
--- 14. CACHE TABLE (Optional - for database caching)
+-- 14. PENGURUS ORGANISASI
+-- ============================================
+
+CREATE TABLE pengurus (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(255) NOT NULL,
+    jabatan VARCHAR(255) NOT NULL,
+    kategori ENUM('pimpinan_utama', 'bidang', 'sekretariat', 'bendahara') DEFAULT 'bidang',
+    foto VARCHAR(500),
+    bio TEXT,
+    email VARCHAR(255),
+    phone VARCHAR(20),
+    periode_mulai YEAR NOT NULL,
+    periode_selesai YEAR NOT NULL,
+    order_number INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_kategori (kategori),
+    INDEX idx_periode (periode_mulai, periode_selesai),
+    INDEX idx_order_number (order_number),
+    INDEX idx_is_active (is_active)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================
+-- 15. EDITORIAL TEAM (TIM REDAKSI)
+-- ============================================
+
+CREATE TABLE editorial_team (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    position VARCHAR(255) NOT NULL,
+    role_type ENUM('pemimpin_redaksi', 'wakil_pemimpin_redaksi', 'redaktur_pelaksana', 'tim_redaksi') NOT NULL,
+    photo VARCHAR(500),
+    bio TEXT,
+    email VARCHAR(255),
+    phone VARCHAR(20),
+    order_number INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_role_type (role_type),
+    INDEX idx_order_number (order_number),
+    INDEX idx_is_active (is_active)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE editorial_council (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    institution VARCHAR(255) NOT NULL,
+    expertise VARCHAR(500),
+    photo VARCHAR(500),
+    bio TEXT,
+    email VARCHAR(255),
+    order_number INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_order_number (order_number),
+    INDEX idx_is_active (is_active)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================
+-- 16. CONTACT MESSAGES
+-- ============================================
+
+CREATE TABLE contact_messages (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    ticket_id VARCHAR(50) UNIQUE NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    subject VARCHAR(500) NOT NULL,
+    message TEXT NOT NULL,
+    status ENUM('new', 'read', 'in_progress', 'resolved', 'closed') DEFAULT 'new',
+    priority ENUM('low', 'medium', 'high', 'urgent') DEFAULT 'medium',
+    ip_address VARCHAR(45),
+    user_agent TEXT,
+    assigned_to BIGINT UNSIGNED,
+    replied_at TIMESTAMP NULL,
+    resolved_at TIMESTAMP NULL,
+    notes TEXT COMMENT 'Internal notes',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (assigned_to) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX idx_ticket_id (ticket_id),
+    INDEX idx_status (status),
+    INDEX idx_priority (priority),
+    INDEX idx_email (email),
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================
+-- 17. EVENT FLAYERS
+-- ============================================
+
+CREATE TABLE event_flayers (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(500) NOT NULL,
+    description TEXT,
+    image VARCHAR(500) NOT NULL,
+    event_date DATE,
+    event_location VARCHAR(500),
+    registration_url VARCHAR(500),
+    contact_person VARCHAR(255),
+    contact_phone VARCHAR(20),
+    contact_email VARCHAR(255),
+    order_number INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    start_display_date TIMESTAMP NULL,
+    end_display_date TIMESTAMP NULL,
+    created_by BIGINT UNSIGNED,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX idx_event_date (event_date),
+    INDEX idx_order_number (order_number),
+    INDEX idx_is_active (is_active),
+    INDEX idx_display_dates (start_display_date, end_display_date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================
+-- 18. CACHE TABLE (Optional - for database caching)
 -- ============================================
 
 CREATE TABLE cache (

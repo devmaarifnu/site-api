@@ -1,0 +1,497 @@
+{
+	"info": {
+		"_postman_id": "lpmaarif-nu-api-2025",
+		"name": "LP Ma'arif NU API",
+		"description": "Complete API collection for LP Ma'arif NU Site API including all READ-ONLY endpoints and extended features",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "lpmaarif-nu"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": ["{{base_url}}"],
+							"path": ["health"]
+						},
+						"description": "Check if API is running"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "News",
+			"item": [
+				{
+					"name": "Get All News",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news?page=1&limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "news"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (default: 1)"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Items per page (default: 10, max: 100)"
+								},
+								{
+									"key": "category",
+									"value": "",
+									"description": "Filter by category slug",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search in title and excerpt",
+									"disabled": true
+								},
+								{
+									"key": "featured",
+									"value": "true",
+									"description": "Filter featured only",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "-published_at",
+									"description": "Sort by field (prefix - for DESC)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get paginated list of news articles"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Featured News",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/featured?limit=5",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "news", "featured"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5",
+									"description": "Number of featured news (default: 5)"
+								}
+							]
+						},
+						"description": "Get featured news articles"
+					},
+					"response": []
+				},
+				{
+					"name": "Get News by Slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/:slug",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "news", ":slug"],
+							"variable": [
+								{
+									"key": "slug",
+									"value": "peluncuran-program-beasiswa-unggulan-2024",
+									"description": "Article slug"
+								}
+							]
+						},
+						"description": "Get single news article by slug"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Opinions",
+			"item": [
+				{
+					"name": "Get All Opinions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/opinions?page=1&limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "opinions"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Get paginated list of opinion articles"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Opinion by Slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/opinions/:slug",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "opinions", ":slug"],
+							"variable": [
+								{
+									"key": "slug",
+									"value": "pendidikan-karakter-era-digital"
+								}
+							]
+						},
+						"description": "Get single opinion article by slug"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Documents",
+			"item": [
+				{
+					"name": "Get All Documents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/documents?page=1&limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "documents"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "category",
+									"value": "",
+									"description": "Filter by category slug",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"description": "Filter by file type (PDF, DOCX, etc)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get paginated list of documents"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/documents/:id",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "documents", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Get single document by ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hero Slides",
+			"item": [
+				{
+					"name": "Get Active Hero Slides",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/hero-slides",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "hero-slides"]
+						},
+						"description": "Get active hero slides for homepage"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organization",
+			"item": [
+				{
+					"name": "Get Organization Structure",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/organization/structure",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "organization", "structure"]
+						},
+						"description": "Get organization structure"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Board Members",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/organization/board-members",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "organization", "board-members"]
+						},
+						"description": "Get board members list"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pengurus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/organization/pengurus?periode=2024-2029",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "organization", "pengurus"],
+							"query": [
+								{
+									"key": "periode",
+									"value": "2024-2029",
+									"description": "Filter by periode (e.g., 2024-2029)"
+								},
+								{
+									"key": "kategori",
+									"value": "",
+									"description": "Filter by kategori (pimpinan_utama, bidang, sekretariat, bendahara)",
+									"disabled": true
+								},
+								{
+									"key": "active",
+									"value": "true",
+									"description": "Filter active only (default: true)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get organization pengurus list with filters"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pages",
+			"item": [
+				{
+					"name": "Get Page by Slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/pages/:slug",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "pages", ":slug"],
+							"variable": [
+								{
+									"key": "slug",
+									"value": "visi-misi",
+									"description": "Page slug (visi-misi, sejarah, program-strategis, pramuka)"
+								}
+							]
+						},
+						"description": "Get static page content by slug"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "categories"]
+						},
+						"description": "Get all categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category by Slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/:slug",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "categories", ":slug"],
+							"variable": [
+								{
+									"key": "slug",
+									"value": "nasional"
+								}
+							]
+						},
+						"description": "Get category with articles"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "Get Public Settings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/settings",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "settings"]
+						},
+						"description": "Get public settings (site info, contact, social media)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Editorial Team",
+			"item": [
+				{
+					"name": "Get Editorial Team",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/editorial/team",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "editorial", "team"]
+						},
+						"description": "Get complete editorial team including pemimpin redaksi, wakil, redaktur pelaksana, tim redaksi, and dewan redaksi"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Submit Contact Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"081234567890\",\n  \"subject\": \"Pertanyaan tentang pendaftaran\",\n  \"message\": \"Saya ingin menanyakan prosedur pendaftaran untuk siswa baru tahun 2024/2025. Mohon informasinya.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/contact/submit",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "contact", "submit"]
+						},
+						"description": "Submit contact form message. Returns ticket ID for tracking.\n\nValidation rules:\n- name: required, min 3 chars, max 255 chars\n- email: required, valid email format\n- phone: optional, max 20 chars\n- subject: required, min 5 chars, max 500 chars\n- message: required, min 10 chars\n\nRate limit: 5 requests per hour per IP"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Get Event Flayers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/events/flayers?limit=10&active=true",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "events", "flayers"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Number of items (default: 10, max: 100)"
+								},
+								{
+									"key": "active",
+									"value": "true",
+									"description": "Filter active only (default: true)"
+								},
+								{
+									"key": "upcoming",
+									"value": "",
+									"description": "Filter upcoming events only",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get event flayers/banners for homepage or events page. Automatically filters by display date range."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
