@@ -53,9 +53,9 @@ func (s *settingService) GetPublicSettings() (map[string]interface{}, error) {
 		case "social_youtube":
 			socialMedia["youtube"] = setting.SettingValue
 		case "site_logo":
-			result["site_logo"] = setting.SettingValue
+			result["logo"] = setting.SettingValue
 		case "site_favicon":
-			result["site_favicon"] = setting.SettingValue
+			result["favicon"] = setting.SettingValue
 		}
 	}
 
