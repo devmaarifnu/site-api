@@ -1,0 +1,50 @@
+# Application Configuration
+app:
+  name: "LP Maarif NU Site API"
+  env: "development"
+  port: 8080
+  version: "1.0.0"
+
+# Database Configuration
+database:
+  host: "127.0.0.1"
+  port: 3306
+  user: "root"
+  password: ""
+  name: "lp_maarif_nu"
+  max_idle_conns: 10
+  max_open_conns: 100
+  conn_max_lifetime: 3600
+
+# CORS Configuration
+cors:
+  allowed_origins:
+    - "http://localhost:3000"
+    - "http://localhost:5173"
+  allowed_methods:
+    - "GET"
+    - "OPTIONS"
+  allowed_headers:
+    - "Content-Type"
+    - "Authorization"
+
+# Cache Configuration
+cache:
+  enabled: false
+  type: "memory"
+  ttl: 3600
+
+# Rate Limiting Configuration
+rate_limit:
+  enabled: true
+  requests: 100
+  window: 60
+
+# CDN/Storage Configuration
+storage:
+  cdn_url: "https://cdn.lpmaarifnu.or.id"
+
+# Logging Configuration
+logging:
+  level: "info"
+  format: "json"
