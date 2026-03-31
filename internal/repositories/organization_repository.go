@@ -88,6 +88,15 @@ func (r *organizationRepository) GetOrganizationStructure() (map[string]interfac
 		Find(&departments)
 	structure["departments"] = departments
 
+	// Get Anggota
+	var anggota []models.BoardMember
+	r.db.Joins("JOIN organization_positions ON organization_positions.id = board_members.position_id").
+		Where("organization_positions.position_type = ?", "anggota").
+		Where("board_members.is_active = ?", true).
+		Order("board_members.order_number ASC").
+		Find(&anggota)
+	structure["anggota"] = anggota
+
 	return structure, nil
 }
 

@@ -6,7 +6,7 @@ type OrganizationPosition struct {
 	ID            uint      `gorm:"primaryKey" json:"id"`
 	PositionName  string    `gorm:"size:255;not null" json:"position_name"`
 	PositionLevel int       `gorm:"not null" json:"position_level"`
-	PositionType  string    `gorm:"type:enum('ketua','wakil','sekretaris','bendahara','bidang');not null" json:"position_type"`
+	PositionType  string    `gorm:"type:enum('ketua','wakil','sekretaris','bendahara','bidang','anggota');not null" json:"position_type"`
 	ParentID      *uint     `json:"parent_id,omitempty"`
 	OrderNumber   int       `gorm:"default:0" json:"order_number"`
 	IsActive      bool      `gorm:"default:true" json:"is_active"`
