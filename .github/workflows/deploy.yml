@@ -39,7 +39,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd /var/opt/site-api
-            ./launch.sh stop
+            sudo ./launch.sh stop
             sudo mv /tmp/site-api /var/opt/site-api/site-api
-            chmod +x site-api
-            ./launch.sh start
+            sudo chmod +x site-api
+            sudo ./launch.sh start
