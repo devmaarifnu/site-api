@@ -26,46 +26,65 @@ func (r *organizationRepository) GetOrganizationStructure() (map[string]interfac
 	// Get Ketua
 	var ketua models.BoardMember
 	err := r.db.Joins("JOIN organization_positions ON organization_positions.id = board_members.position_id").
-		Where("organization_positions.position_type = ?", "ketua").
+		Where("organization_positions.position_type = ? AND organization_positions.position_name = ?", "ketua", "Ketua").
 		Where("board_members.is_active = ?", true).
 		First(&ketua).Error
 	if err == nil {
 		structure["ketua"] = ketua
 	}
 
-	// Get Wakil
-	var wakil []models.BoardMember
+	// Get Wakil Ketua
+	var wakilKetua []models.BoardMember
 	r.db.Joins("JOIN organization_positions ON organization_positions.id = board_members.position_id").
-		Where("organization_positions.position_type = ?", "wakil").
+		Where("organization_positions.position_type = ? AND organization_positions.position_name = ?", "wakil", "Wakil Ketua").
 		Where("board_members.is_active = ?", true).
 		Order("board_members.order_number ASC").
-		Find(&wakil)
-	structure["wakil"] = wakil
+		Find(&wakilKetua)
+	structure["wakil_ketua"] = wakilKetua
 
 	// Get Sekretaris
 	var sekretaris models.BoardMember
 	err = r.db.Joins("JOIN organization_positions ON organization_positions.id = board_members.position_id").
-		Where("organization_positions.position_type = ?", "sekretaris").
+		Where("organization_positions.position_type = ? AND organization_positions.position_name = ?", "sekretaris", "Sekretaris").
 		Where("board_members.is_active = ?", true).
 		First(&sekretaris).Error
 	if err == nil {
 		structure["sekretaris"] = sekretaris
 	}
 
+	// Get Wakil Sekretaris
+	var wakilSekretaris []models.BoardMember
+	r.db.Joins("JOIN organization_positions ON organization_positions.id = board_members.position_id").
+		Where("organization_positions.position_type = ? AND organization_positions.position_name = ?", "sekretaris", "Wakil Sekretaris").
+		Where("board_members.is_active = ?", true).
+		Order("board_members.order_number ASC").
+		Find(&wakilSekretaris)
+	structure["wakil_sekretaris"] = wakilSekretaris
+
 	// Get Bendahara
 	var bendahara models.BoardMember
 	err = r.db.Joins("JOIN organization_positions ON organization_positions.id = board_members.position_id").
-		Where("organization_positions.position_type = ?", "bendahara").
+		Where("organization_positions.position_type = ? AND organization_positions.position_name = ?", "bendahara", "Bendahara").
 		Where("board_members.is_active = ?", true).
 		First(&bendahara).Error
 	if err == nil {
 		structure["bendahara"] = bendahara
 	}
 
-	// Get Departments
+	// Get Wakil Bendahara
+	var wakilBendahara []models.BoardMember
+	r.db.Joins("JOIN organization_positions ON organization_positions.id = board_members.position_id").
+		Where("organization_positions.position_type = ? AND organization_positions.position_name = ?", "bendahara", "Wakil Bendahara").
+		Where("board_members.is_active = ?", true).
+		Order("board_members.order_number ASC").
+		Find(&wakilBendahara)
+	structure["wakil_bendahara"] = wakilBendahara
+
+	// Get Departments with Members
 	var departments []models.Department
 	r.db.Where("is_active = ?", true).
 		Order("order_number ASC").
+		Preload("Members", "is_active = ? ORDER BY order_number ASC", true).
 		Find(&departments)
 	structure["departments"] = departments
 
@@ -97,6 +116,7 @@ func (r *organizationRepository) FindDepartments() ([]models.Department, error) 
 	err := r.db.
 		Where("is_active = ?", true).
 		Order("order_number ASC").
+		Preload("Members", "is_active = ? ORDER BY order_number ASC", true).
 		Find(&departments).Error
 
 	return departments, err
