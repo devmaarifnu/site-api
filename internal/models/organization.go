@@ -42,16 +42,29 @@ func (BoardMember) TableName() string {
 }
 
 type Department struct {
-	ID          uint      `gorm:"primaryKey" json:"id"`
-	Name        string    `gorm:"size:255;not null" json:"name"`
-	Description string    `gorm:"type:text" json:"description,omitempty"`
-	HeadName    string    `gorm:"size:255" json:"head_name,omitempty"`
-	OrderNumber int       `gorm:"default:0" json:"order_number"`
-	IsActive    bool      `gorm:"default:true" json:"is_active"`
-	CreatedAt   time.Time `json:"created_at"`
-	UpdatedAt   time.Time `json:"updated_at"`
+	ID          uint              `gorm:"primaryKey" json:"id"`
+	Name        string            `gorm:"size:255;not null" json:"name"`
+	Description string            `gorm:"type:text" json:"description,omitempty"`
+	OrderNumber int               `gorm:"default:0" json:"order_number"`
+	IsActive    bool              `gorm:"default:true" json:"is_active"`
+	CreatedAt   time.Time         `json:"created_at"`
+	UpdatedAt   time.Time         `json:"updated_at"`
+	Members     []DepartmentMember `gorm:"foreignKey:DepartmentID" json:"members,omitempty"`
 }
 
 func (Department) TableName() string {
 	return "departments"
 }
+
+type DepartmentMember struct {
+	ID           uint      `gorm:"primaryKey" json:"id"`
+	DepartmentID uint      `gorm:"not null" json:"department_id"`
+	Name         string    `gorm:"size:255;not null" json:"name"`
+	Role         string    `gorm:"type:enum('ketua_bidang','anggota');default:'anggota'" json:"role"`
+	OrderNumber  int       `gorm:"default:0" json:"order_number"`
+	IsActive     bool      `gorm:"default:true" json:"is_active"`
+	CreatedAt    time.Time `json:"created_at"`
+	UpdatedAt    time.Time `json:"updated_at"`
+}
+
+func (DepartmentMember) TableName() string { return "department_members" }
