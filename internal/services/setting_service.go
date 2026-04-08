@@ -44,6 +44,8 @@ func (s *settingService) GetPublicSettings() (map[string]interface{}, error) {
 			contact["phone"] = setting.SettingValue
 		case "contact_address":
 			contact["address"] = setting.SettingValue
+		case "maps_embed":
+			contact["maps_embed"] = setting.SettingValue 
 		case "social_facebook":
 			socialMedia["facebook"] = setting.SettingValue
 		case "social_twitter":
